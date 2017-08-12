@@ -28,7 +28,6 @@ namespace Sixth
                 if (!ok) { Console.WriteLine("Ошибка. Неверный формат данных. Повторите ввод."); }
 
             } while (!ok);//если введённые данные - не число, то новая итерация цикла
-            Console.WriteLine();
             return n;
         }
         static void CreateNewNumber(double a1, double a2, double a3)//Создание нового элемента последовательности (рекурсия)
@@ -79,6 +78,7 @@ namespace Sixth
                 if (E < 0) { Console.WriteLine("Ошибка. Число должно быть больше или равно 0. Повторите ввод."); ok = false; }
 
             } while (!ok);
+            Console.WriteLine();
 
             //Проверка второго и третьего изначального числа на соответствие условию
             CountNum = 2;
@@ -101,14 +101,16 @@ namespace Sixth
             }
             else { Console.Write(a3); }
 
+            if (count<N)
             CreateNewNumber(a1, a2, a3);//Вывоз рекурсии
 
             //Вывод номеров выделенных чисел
-            Console.WriteLine();
-            for (int i = 0; i < NumberList.Length; i++)
+            Console.WriteLine("\n\nНомера чисел, которые соответствуют условию: | ак  – ак–1 | > {0}",E);
+            for (int i = 0; i < NumberList.Length-1; i++)
             {
                 Console.Write(NumberList[i] + ", ");
             }
+            Console.Write(NumberList[NumberList.Length-1]);
         }
         static void Main(string[] args)
         {
