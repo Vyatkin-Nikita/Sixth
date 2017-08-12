@@ -15,6 +15,7 @@ namespace Sixth
         static int a1, a2, a3;//Первые элементы последовательности
         static int N;//Число N
         static int E;//Число Е
+        static int count = 0;//Счётчик количества элементов, такие что | ак  – ак–1 | > E
         static int VvodProverka(int mogr = 0, int bogr = 0)//Проверка вводимых с клавиатуры чисел, mogr и bogr - минимально и максимально возможные значения числа
         {
             bool ok;
@@ -30,10 +31,37 @@ namespace Sixth
             Console.WriteLine();
             return n;
         }
+        static void CreateNewNumber(int a1, int a2, int a3)
+        {
+            int ak = a3 + 2 * a2 * a1;
 
+            if (Math.Abs(ak - a3) > E) { count++; Console.Write("-"); Console.ForegroundColor = ConsoleColor.DarkGreen; Console.Write(ak); Console.ResetColor(); }
+            else Console.Write("-"+ak);
+
+            if (count < N) CreateNewNumber(a2, a3, ak);
+        }
+        static void MainFunction()
+        {
+            a1 = 0;
+            a2 = 0;
+            a3 = 0;
+            N = 5;
+            E = 3;
+
+            Console.Write(a1+"-");
+            if (Math.Abs(a2 - a1) > E) { count++; Console.ForegroundColor = ConsoleColor.DarkGreen; Console.Write(a2); Console.ResetColor(); }
+            else { Console.Write(a2);}
+            Console.Write("-");
+            if (Math.Abs(a3 - a2) > E) { count++; Console.ForegroundColor = ConsoleColor.DarkGreen; Console.Write(a3); Console.ResetColor(); }
+            else { Console.Write(a3); }
+
+            CreateNewNumber(a1, a2, a3);
+        } 
         static void Main(string[] args)
         {
+            MainFunction();
             Console.ReadLine();
         }
+
     }
 }
