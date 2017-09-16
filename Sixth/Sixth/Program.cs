@@ -90,20 +90,21 @@ namespace Sixth
                 Console.Write(a2); Console.ResetColor();
             }
             else { Console.Write(a2); }
-
-            CountNum++;
-            Console.Write("-");
-            if (Math.Abs(a3 - a2) > E)
+            if (count < N)
             {
-                NumberList[count] = CountNum; count++;
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.Write(a3); Console.ResetColor();
+                CountNum++;
+                Console.Write("-");
+                if (Math.Abs(a3 - a2) > E)
+                {
+                    NumberList[count] = CountNum; count++;
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write(a3); Console.ResetColor();
+                }
+                else { Console.Write(a3); }
+
+                if (count < N)
+                    CreateNewNumber(a1, a2, a3);//Вывоз рекурсии
             }
-            else { Console.Write(a3); }
-
-            if (count<N)
-            CreateNewNumber(a1, a2, a3);//Вывоз рекурсии
-
             //Вывод номеров выделенных чисел
             Console.WriteLine("\n\nНомера чисел, которые соответствуют условию: | ак  – ак–1 | > {0}",E);
             for (int i = 0; i < NumberList.Length-1; i++)
